@@ -1,0 +1,50 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
+	<modelVersion>4.0.0</modelVersion>
+	<parent>
+		<groupId>uni.pu.fmi.st</groupId>
+		<artifactId>project-a</artifactId>
+		<version>2.4.0-SNAPSHOT</version>
+	</parent>
+	<artifactId>project-c</artifactId>
+	<properties>
+		<test.groups>uni.pu.fm.st.SlowTests, uni.pu.fm.st.FastTests</test.groups>
+	</properties>
+
+
+	<dependencies>
+		<dependency>
+			<groupId>junit</groupId>
+			<artifactId>junit</artifactId>
+		</dependency>
+	</dependencies>
+
+	<profiles>
+		<profile>
+			<id>SlowTests</id>
+			<properties>
+				<test.groups>uni.pu.fm.st.SlowTests</test.groups>
+			</properties>
+		</profile>
+		<profile>
+			<id>FastTests</id>
+			<properties>
+				<test.groups>uni.pu.fm.st.FastTests</test.groups>
+			</properties>
+		</profile>
+	</profiles>
+	<build>
+		<plugins>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-surefire-plugin</artifactId>
+				<version>3.0.0-M5</version>
+				<configuration>
+					<groups>${test.groups}</groups>
+				</configuration>
+			</plugin>
+		</plugins>
+	</build>
+
+</project>
